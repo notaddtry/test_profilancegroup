@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addNews } from '../../store/slices/newsSlice'
 
+import styles from './News.module.scss'
+
 const AddNewsInput = () => {
   const dispatch = useDispatch()
 
@@ -15,16 +17,23 @@ const AddNewsInput = () => {
       ...news,
       id: Date.now().toString(),
       accepted: false,
+      created: Date.now().toString(),
     }
     dispatch(addNews(newNews))
+    setNews({
+      name: '',
+      body: '',
+    })
   }
 
   return (
-    <div className='news_input_wrapper'>
-      <div className='input-field col s6'>
+    <div className={styles.news_input_wrapper}>
+      <div className={styles.news_input_form_wrapper}>
+        <h2>Add some news</h2>
         <input
           placeholder='name'
           type='text'
+          value={news.name}
           onChange={(e) =>
             setNews((prev) => ({
               ...prev,
@@ -36,6 +45,7 @@ const AddNewsInput = () => {
           className='materialize-textarea'
           placeholder='body'
           type='text'
+          value={news.body}
           onChange={(e) =>
             setNews((prev) => ({
               ...prev,

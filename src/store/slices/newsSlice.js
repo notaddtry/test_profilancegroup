@@ -1,63 +1,66 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import userSlice from './userSlice'
 
 const initialState = {
-  news: [
-    {
-      name: 'name1',
-      body: 'loremipsum1',
-      created: '01.04.2009',
-      id: '1',
-      accepted: true,
-    },
-    {
-      name: 'name2',
-      body: 'loremipsum2',
-      created: '01.44.2019',
-      id: '2',
-      accepted: true,
-    },
-    {
-      name: 'name3',
-      body: 'loremipsum3',
-      created: '01.24.2109',
-      id: '3',
-      accepted: true,
-    },
-    {
-      name: 'name4',
-      body: 'loremipsum4',
-      created: '03.04.3009',
-      id: '4',
-      accepted: true,
-    },
-  ],
+  news: [],
+  filteredNews: [],
+  loading: 'idle',
+  error: null,
 }
+
+//Имитация работы с сервером
+export const fetchNews = createAsyncThunk('product/fetchNews', async (data) => {
+  return data
+})
 
 const newsSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {
-    filterNews(state, action) {},
     searchNews(state, action) {
-      const searchedNews = state.news.filter(
-        (oneNews) => oneNews.name === action.payload
-      )
-      state.news = searchedNews
+      state.filteredNews = state.news.filter((oneNews) => {
+        if (
+          oneNews.name
+            .toLowerCase()
+            .includes(action.payload.search.toLowerCase())
+        ) {
+          return oneNews
+        }
+      })
     },
+
     addNews(state, action) {
       state.news.push(action.payload)
+      state.filteredNews.push(action.payload)
     },
     acceptNews(state, action) {
       state.news.find(
         (oneNews) => oneNews.id === action.payload
       ).accepted = true
+      state.filteredNews.find(
+        (oneNews) => oneNews.id === action.payload
+      ).accepted = true
     },
     deleteNews(state, action) {
-      const newNewsArray = state.news.filter(
+      state.news = state.news.filter((oneNews) => oneNews.id !== action.payload)
+      state.filteredNews = state.news.filter(
         (oneNews) => oneNews.id !== action.payload
       )
-      state.news = newNewsArray
+    },
+  },
+
+  extraReducers: {
+    [fetchNews.pending]: (state) => {
+      state.loading = 'pending'
+      state.error = null
+    },
+    [fetchNews.fulfilled]: (state, action) => {
+      state.loading = 'success'
+      state.news = action.payload
+      state.filteredNews = action.payload
+    },
+    [fetchNews.rejected]: (state, action) => {
+      state.loading = 'reject'
+      state.error = action.payload
     },
   },
 })

@@ -1,0 +1,58 @@
+.hidden {
+  overflow: hidden;
+}
+
+.enter_popup_wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+
+  .enter_popup_form {
+    background-color: #fff;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    padding: 1.5rem;
+
+    h2 {
+      width: max-content;
+      margin: 0 auto 2rem;
+    }
+
+    .enter_popup__items {
+      display: flex;
+      margin: 0 0 2rem 0;
+
+      .enter_popup__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:not(:last-child) {
+          margin: 0 2rem 0 0;
+        }
+        & > * {
+          padding: 0 0.5rem;
+        }
+      }
+    }
+
+    .enter_popup_error {
+      font-size: 1.5rem;
+      color: red;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

@@ -6,7 +6,7 @@ import NewsPage from './pages/NewsPage'
 
 function App() {
   return (
-    <div className='App'>
+    <div className='container'>
       <Routes>
         <Route path='/' element={<HomeLayout />}>
           <Route index element={<HomePage />} />

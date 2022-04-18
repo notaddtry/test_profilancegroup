@@ -1,51 +1,55 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { logIn, logOut, setIsPopupShown } from '../../store/slices/userSlice'
+import { logOut, setIsPopupShown } from '../../store/slices/userSlice'
+import { scrollLock, scrollUnlock } from '../lib/helpers/scrollLock'
+
+import styles from './Layout.module.scss'
 
 const Header = () => {
   const dispatch = useDispatch()
-  const [popupShow, setPopupShow] = useState(false)
   const isLogged = useSelector((state) => state.user.userType)
 
   const handleClick = () => {
-    setPopupShow(true)
+    dispatch(setIsPopupShown(true))
+    scrollLock()
   }
 
   const handleLogOut = () => {
     dispatch(logOut())
-    setPopupShow(false)
+    dispatch(setIsPopupShown(false))
+    scrollUnlock()
   }
 
-  useEffect(() => {
-    popupShow
-      ? dispatch(setIsPopupShown(true))
-      : dispatch(setIsPopupShown(false))
-  }, [popupShow])
-
   return (
-    <div>
-      <Link to='/'>
-        <img
-          src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
-          alt='logo'
-        />
+    <header className={styles.header}>
+      <Link to='/' className={styles.links_item}>
+        <picture className={styles.links_logo}>
+          <source
+            srcSet={`${process.env.PUBLIC_URL}/assets/images/logo-mobile.svg`}
+            media='(max-width: 767px)'
+          />
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/images/logo.svg`}
+            alt='logo'
+          />
+        </picture>
       </Link>
-      <Link to='/news'>News</Link>
-      {isLogged ? (
-        <button
-          className='waves-effect waves-light btn-large'
-          onClick={handleLogOut}>
-          Logout
-        </button>
-      ) : (
-        <button
-          className='waves-effect waves-light btn-large'
-          onClick={handleClick}>
-          Login
-        </button>
-      )}
-    </div>
+      <div className={styles.links_wrapper}>
+        <Link to='/news' className={styles.links_item}>
+          News
+        </Link>
+        {isLogged ? (
+          <button className={styles.links_item} onClick={handleLogOut}>
+            Logout
+          </button>
+        ) : (
+          <button className={styles.links_item} onClick={handleClick}>
+            Login
+          </button>
+        )}
+      </div>
+    </header>
   )
 }
 
