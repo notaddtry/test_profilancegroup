@@ -7,12 +7,13 @@ Admin can agree news and delete news. User can only add news(admin cant do it). 
 You can test this:
 
 Admin {
-  login : admin,
-  password : 123123
+login : admin,
+password : 123123
 },
 
 User {
-  login : user,
-  password: 123
+login : user,
+password: 123
 }
 
+//Check newsSlice.js
