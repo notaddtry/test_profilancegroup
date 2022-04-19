@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/test_profilancegroup/static/css/main.5123e0f4.css",
+    "main.js": "/test_profilancegroup/static/js/main.f4dcfebb.js",
+    "index.html": "/test_profilancegroup/index.html",
+    "main.5123e0f4.css.map": "/test_profilancegroup/static/css/main.5123e0f4.css.map",
+    "main.f4dcfebb.js.map": "/test_profilancegroup/static/js/main.f4dcfebb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5123e0f4.css",
+    "static/js/main.f4dcfebb.js"
+  ]
+}
