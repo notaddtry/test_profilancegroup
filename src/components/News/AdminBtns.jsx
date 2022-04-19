@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+
 import { acceptNews, deleteNews } from '../../store/slices/newsSlice'
 
 import styles from './News.module.scss'

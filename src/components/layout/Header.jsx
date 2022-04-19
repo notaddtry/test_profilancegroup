@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { logOut, setIsPopupShown } from '../../store/slices/userSlice'
 import { scrollLock, scrollUnlock } from '../lib/helpers/scrollLock'
+
+import { logOut, setIsPopupShown } from '../../store/slices/userSlice'
 
 import styles from './Layout.module.scss'
 

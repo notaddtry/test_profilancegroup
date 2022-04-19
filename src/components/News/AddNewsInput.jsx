@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+
 import { addNews } from '../../store/slices/newsSlice'
 
 import styles from './News.module.scss'
@@ -17,7 +18,7 @@ const AddNewsInput = () => {
       ...news,
       id: Date.now().toString(),
       accepted: false,
-      created: Date.now().toString(),
+      created: new Date().toISOString().substr(0, 10),
     }
     dispatch(addNews(newNews))
     setNews({

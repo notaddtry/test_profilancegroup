@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchNews } from '../../store/slices/newsSlice'
 import { fetchData } from '../lib/api/api'
+
+import { fetchNews } from '../../store/slices/newsSlice'
+
 import AddNewsInput from './AddNewsInput'
 import AdminBtns from './AdminBtns'
 import SearchNews from './SearchNews'
@@ -20,6 +22,7 @@ const News = () => {
   useEffect(() => {
     const data = fetchData()
     dispatch(fetchNews(data))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

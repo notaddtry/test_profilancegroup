@@ -1,8 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import HomeLayout from './components/layout/pagesLayout/HomeLayout'
+
 import HomePage from './pages/HomePage'
 import NewsPage from './pages/NewsPage'
+
+import HomeLayout from './components/layout/pagesLayout/HomeLayout'
 
 function App() {
   return (

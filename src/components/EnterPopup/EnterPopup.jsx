@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { userType } from '../types/userType'
+import { scrollUnlock } from '../lib/helpers/scrollLock'
+
 import { logIn, setIsPopupShown } from '../../store/slices/userSlice'
 
+import { userType } from '../types/userType'
+
 import styles from './EnterPopup.module.scss'
-import { scrollUnlock } from '../lib/helpers/scrollLock'
 
 const EnterPopup = () => {
   const dispatch = useDispatch()

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+
 import { searchNews } from '../../store/slices/newsSlice'
 
 import styles from './News.module.scss'
@@ -14,6 +15,7 @@ const SearchNews = () => {
 
   useEffect(() => {
     dispatch(searchNews({ search }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search])
 
   return (
