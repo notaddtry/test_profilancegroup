@@ -20,6 +20,7 @@ const News = () => {
   }
 
   useEffect(() => {
+    //При смене окна загружаются данные из db => теряется все то,что добавил пользователь,так как нет API,позволяющее соединить "сервер" и действия пользователя.
     const data = fetchData()
     dispatch(fetchNews(data))
     // eslint-disable-next-line react-hooks/exhaustive-deps
