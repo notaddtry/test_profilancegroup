@@ -24,13 +24,9 @@ const newsSlice = createSlice({
   reducers: {
     searchNews(state, action) {
       state.filteredNews = state.news.filter((oneNews) => {
-        if (
-          oneNews.name
-            .toLowerCase()
-            .includes(action.payload.search.toLowerCase())
-        ) {
-          return oneNews
-        }
+        return oneNews.name
+          .toLowerCase()
+          .includes(action.payload.search.toLowerCase())
       })
     },
 

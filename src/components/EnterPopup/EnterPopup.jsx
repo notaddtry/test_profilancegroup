@@ -70,11 +70,7 @@ const EnterPopup = () => {
             />
           </div>
         </div>
-        {error && (
-          <span className={styles.enter_popup_error}>
-            Введите правильные данные
-          </span>
-        )}
+        {error && <span className='error'>Введите правильные данные</span>}
         <button
           className='btn waves-effect waves-light'
           type='submit'

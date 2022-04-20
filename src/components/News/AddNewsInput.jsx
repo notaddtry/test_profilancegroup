@@ -12,19 +12,32 @@ const AddNewsInput = () => {
     name: '',
     body: '',
   })
+  const [newsError, setNewsError] = useState(false)
 
   const handleSubmit = () => {
-    const newNews = {
-      ...news,
-      id: Date.now().toString(),
-      accepted: false,
-      created: new Date().toISOString().substr(0, 10),
+    if (news.name.trim()) {
+      const newNews = {
+        ...news,
+        id: Date.now().toString(),
+        accepted: false,
+        created: new Date().toISOString().substr(0, 10),
+      }
+      dispatch(addNews(newNews))
+      setNews({
+        name: '',
+        body: '',
+      })
+    } else {
+      setNewsError(true)
     }
-    dispatch(addNews(newNews))
-    setNews({
-      name: '',
-      body: '',
-    })
+  }
+
+  const handleChange = (e, type) => {
+    setNewsError(false)
+    setNews((prev) => ({
+      ...prev,
+      [type]: e.target.value,
+    }))
   }
 
   return (
@@ -35,26 +48,19 @@ const AddNewsInput = () => {
           placeholder='name'
           type='text'
           value={news.name}
-          onChange={(e) =>
-            setNews((prev) => ({
-              ...prev,
-              name: e.target.value,
-            }))
-          }
+          onChange={(e) => handleChange(e, 'name')}
         />
         <textarea
           className='materialize-textarea'
           placeholder='body'
           type='text'
           value={news.body}
-          onChange={(e) =>
-            setNews((prev) => ({
-              ...prev,
-              body: e.target.value,
-            }))
-          }
+          onChange={(e) => handleChange(e, 'body')}
         />
       </div>
+      {newsError && (
+        <p className='error'>Чтобы создать новость,необходимо ввести ее имя.</p>
+      )}
       <button
         className='btn waves-effect waves-light'
         type='submit'

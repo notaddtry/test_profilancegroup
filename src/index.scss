@@ -14,6 +14,14 @@ button {
   overflow: hidden;
 }
 
+.error {
+  font-size: 1.5rem;
+  color: red;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
 .container {
   max-width: 1170px;
   width: 100%;

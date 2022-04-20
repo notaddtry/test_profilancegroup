@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchData } from '../lib/api/api'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
-import { fetchNews } from '../../store/slices/newsSlice'
+// import { useEffect, useMemo } from 'react'
+// import {useDispatch} from 'react-redux'
+
+// import { fetchData } from '../lib/api/api'
+
+// import { fetchNews } from '../../store/slices/newsSlice'
 
 import AddNewsInput from './AddNewsInput'
 import AdminBtns from './AdminBtns'
@@ -11,20 +15,27 @@ import SearchNews from './SearchNews'
 import styles from './News.module.scss'
 
 const News = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   let news = useSelector((state) => state.news.filteredNews)
   const user = useSelector((state) => state.user.userType)
+
+  console.log(news)
 
   if (user === null) {
     news = news.filter((oneNews) => oneNews.accepted === true)
   }
 
-  useEffect(() => {
-    //При смене окна загружаются данные из db => теряется все то,что добавил пользователь,так как нет API,позволяющее соединить "сервер" и действия пользователя.
-    const data = fetchData()
-    dispatch(fetchNews(data))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // Хорошей практикой будет использовать useEffect с подгрузкой данных здесь. Но для решения конкретно в этом случае,необходимо было подгружать данные в другом месте.
+  //
+  // const data = useMemo(() => {
+  //   return fetchData()
+  // }, [])
+  //
+  // useEffect(() => {
+  //
+  //   dispatch(fetchNews(data))
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
 
   return (
     <>
