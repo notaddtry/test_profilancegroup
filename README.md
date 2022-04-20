@@ -16,4 +16,4 @@ login : user,
 password: 123
 }
 
-//Check newsSlice.js
+//Check HomeLayout.jsx
